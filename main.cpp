@@ -1,41 +1,41 @@
 #include <iostream>
 using namespace std;
 
-void enterArrayData(double* headptr);
-void outputArrayData(double* headptr);
-double sumArray(double* headptr);
+void enterArrayData(double* headptr,double SIZE);
+void outputArrayData(double* headptr,double SIZE);
+double sumArray(double* headptr,double SIZE);
 
 int main() {
-    double* headptr = new double[5];
-    int sum;
-    enterArrayData(headptr);
-    outputArrayData(headptr);
-    sum = sumArray(headptr);
+    const int SIZE = 5;
+    double* headptr = new double[SIZE];
+    double sum;
+    enterArrayData(headptr, SIZE);
+    outputArrayData(headptr, SIZE);
+    cout << "Sum of values: " << sumArray(headptr, SIZE);
+    delete [] headptr;
 }
 
-void enterArrayData(double* headptr) {
+void enterArrayData(double* headptr,double SIZE) {
     cout << "Data entry for the array: \n";
-    for(int i = 0; i < 5; i++) {
+    for(int i = 0; i < SIZE; i++) {
         cout << "Element " << (i+1) << ": ";
-        cin >> headptr[i];
+        cin >> *(headptr+i);
     }
     cout << "Data entry complete\n";
 }
 
-void outputArrayData(double* headptr) {
+void outputArrayData(double* headptr,double SIZE) {
     cout << "Outputting Array Elements: ";
-    for(int i = 0; i < 5; i++) {
-        cout << (double)headptr[i] << " ";
+    for(int i = 0; i < SIZE; i++) {
+        cout << *(headptr+i) << " ";
     }
     cout << endl;
 }
 
-double sumArray(double* headptr) {
+double sumArray(double* headptr,double SIZE) {
     double total = 0.0;
-    cout << "Sum of values: ";
-    for (int i = 0; i < 5; i++) {
-        total += headptr[i];
+    for (int i = 0; i < SIZE; i++) {
+        total += *(headptr+i);
     }
-    cout << total << endl;
     return total;
 }
